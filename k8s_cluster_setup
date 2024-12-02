@@ -1,0 +1,32 @@
+#Install Microk8s
+sudo apt-get update
+
+sudo apt-get install python3-pip
+
+sudo apt-get install docker.io
+
+sudo usermod -aG docker ubuntu
+
+newgrp docker
+
+sudo snap install microk8s –classic
+
+sudo microk8s status
+
+sudo microk8s kubectl get all -n kube-system
+
+alias kubectl='sudo microk8s kubectl'
+
+In case you want to use native kubectl for executing the commands, copy the MicroK8s generated kubeconfig to the ~/.kube/config file by using the following command.
+
+mkdir ~/.kube
+
+sudo microk8s kubectl config view --raw > ~/.kube/config
+
+sudo usermod -a -G microk8s $USER
+
+newgrp microk8s
+
+microk8s enable dns storage ingress
+
+
