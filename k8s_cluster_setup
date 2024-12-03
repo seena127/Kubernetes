@@ -9,7 +9,7 @@ sudo usermod -aG docker ubuntu
 
 newgrp docker
 
-sudo snap install microk8s –classic
+sudo snap install microk8s --classic
 
 sudo microk8s status
 
