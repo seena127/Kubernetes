@@ -1,0 +1,59 @@
+1.Error: CrashLoopBackOff
+ Cause: The container keeps crashing due to incorrect configurations, missing dependencies, or application bugs.
+ Solution:
+Check logs: kubectl logs <pod-name>
+Verify environment variables and configurations.
+Debug application-level issues.
+2.Error: ImagePullBackOff
+ Cause: Kubernetes cannot pull the container image.
+ Solution:
+Ensure the image name and tag are correct.
+Verify access to the container registry.
+If private, provide the correct imagePullSecrets.
+3.Error: NodeNotReady
+ Cause: Node is not in a ready state, often due to network or resource issues.
+ Solution:
+Check node status: kubectl describe node <node-name>
+Verify kubelet logs.
+Ensure adequate CPU, memory, and disk space.
+4. Error: PersistentVolumeClaim is not bound
+ Cause: No suitable PersistentVolume (PV) found or misconfigured StorageClass.
+ Solution:
+Check available PVs: kubectl get pv
+Verify PVC and PV match in size and storage class.
+Error: Pending Pods
+ Cause: Pods are stuck in the Pending state due to insufficient resources or scheduling issues.
+ Solution:
+Check node capacity: kubectl describe nodes
+Verify pod resource requests/limits.
+Scale the cluster if necessary.
+5.Error: Unauthorized or Forbidden
+ Cause: Insufficient RBAC permissions.
+ Solution:
+Check RoleBindings/ClusterRoleBindings: kubectl get rolebinding
+Update RBAC rules for the user or service account.
+6.Error: OOMKilled
+ Cause: Pod exceeded its memory limit.
+ Solution:
+Check resource limits: kubectl describe pod <pod-name>
+Increase memory limits in the pod spec.
+Optimize application memory usage.
+7.Error: DNS Resolution Issues
+ Cause: Pods cannot resolve service or external DNS names.
+ Solution:
+Check CoreDNS pod status: kubectl get pods -n kube-system
+Verify the resolv.conf configuration.
+Restart CoreDNS if necessary.
+8. Error: RBAC: Default service account is not permitted to access the API
+ Cause: Service account lacks the necessary permissions.
+ Solution:
+Assign appropriate roles to the service account.
+Use RoleBindings to grant permissions.
+9. Error: Error creating a load balancer
+ Cause: Cloud provider integration issues.
+ Solution:
+Check cloud provider configurations.
+Verify permissions for the Kubernetes control plane to create resources.
+💡 Pro Tips for Troubleshooting Kubernetes Errors:
+Use the Kubectl description to get detailed information about resources.
+Check logs for clues: kubectl logs <pod-name> or kubectl logs <pod-name> --previous.
